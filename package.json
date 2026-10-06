@@ -1,0 +1,48 @@
+{
+  "name": "visitor-follow-up",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Standalone, self-hostable service to automatically follow up by email with known returning visitors.",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/snippet/vf.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/snippet/vf.js",
+      "types": "./dist/snippet/vf.d.ts"
+    },
+    "./snippet": {
+      "import": "./dist/snippet/vf.js",
+      "types": "./dist/snippet/vf.d.ts"
+    }
+  },
+  "scripts": {
+    "build:snippet": "node scripts/build-snippet.js",
+    "build": "npm run build:snippet && wrangler deploy --dry-run --outdir=dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "keywords": [
+    "visitor-tracking",
+    "email-follow-up",
+    "cloudflare-workers",
+    "d1",
+    "workers-ai",
+    "lead-conversion"
+  ],
+  "author": "Yehuda Zahler",
+  "license": "MIT",
+  "dependencies": {
+    "hono": "^4.7.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250224.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.7",
+    "wrangler": "^3.111.0"
+  }
+}

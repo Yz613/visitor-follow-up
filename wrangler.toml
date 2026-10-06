@@ -1,0 +1,30 @@
+name = "visitor-follow-up"
+main = "src/index.ts"
+compatibility_date = "2024-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ENVIRONMENT = "production"
+APP_URL = "https://visitor-follow-up.yourdomain.com"
+# Default AI model (falls back to @cf/cloudflare/clef or @cf/meta/llama-3.1-8b-instruct)
+AI_MODEL = "@cf/cloudflare/clef"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "visitor-follow-up-db"
+database_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+migrations_dir = "migrations"
+
+# KV Namespace for session caching and rate limits
+[[kv_namespaces]]
+binding = "KV"
+id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# Workers AI binding
+[ai]
+binding = "AI"
+
+# Scheduled cron trigger (every 15 minutes)
+[triggers]
+crons = ["*/15 * * * *"]
